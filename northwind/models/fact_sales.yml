@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: fact_sales
+    description: Sales fact table at the order line item level. One row per product per order
+    columns:
+      - name: orderid
+        description: Part of composite key - the order identifier
+        tests:
+          - not_null
+      - name: productkey
+        description: Dimension key for dim_product
+        tests:
+          - not_null
+      - name: customerkey
+        description: Dimension key for dim_customer
+      - name: employeekey
+        description: Dimension key for dim_employee
+      - name: orderdatekey
+        description: Dimension key for dim_date (order date)
+      - name: quantity
+        description: Additive fact - quantity of product sold
+      - name: unitprice
+        description: Semi-additive fact - unit price of product at time of sale
+      - name: discount
+        description: Discount applied to this line item
+      - name: extendedprice
+        description: Additive fact - total line amount (quantity * unitprice * (1-discount))
